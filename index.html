@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADSA Lab | Algorithm Visualizer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">ADSA<span> LAB</span></div>
+    <span class="tag">Interactive Learning Platform</span>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <p class="eyebrow">DATA STRUCTURES & ALGORITHMS</p>
+      <h1>Learn algorithms.<br><span>See how they work.</span></h1>
+      <p>Explore sorting, searching and graph traversal with
+        interactive visualizations and step-by-step explanations.</p>
+    </section>
+
+    <nav class="tabs" aria-label="Algorithm topics">
+      <button class="tab active" data-panel="sorting">Sorting</button>
+      <button class="tab" data-panel="searching">Searching</button>
+      <button class="tab" data-panel="graphs">Graph Traversal</button>
+    </nav>
+
+    <section id="sorting" class="panel active">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">01 / SORTING</p>
+          <h2>Sorting Visualizer</h2>
+          <p>Watch numbers move into ascending order.</p>
+        </div>
+        <span class="complexity" id="sortComplexity">O(n²) time</span>
+      </div>
+
+      <div class="controls">
+        <label>Algorithm
+          <select id="sortAlgorithm">
+            <option value="bubble">Bubble Sort</option>
+            <option value="selection">Selection Sort</option>
+          </select>
+        </label>
+        <label>Numbers
+          <input id="sortInput" value="45, 12, 78, 23, 56, 8, 34"
+            aria-label="Numbers to sort">
+        </label>
+        <button id="loadSort" class="btn secondary">Load numbers</button>
+        <button id="sortBtn" class="btn primary">▶ Visualize</button>
+      </div>
+
+      <div class="visual-card">
+        <div class="visual-top">
+          <span>ARRAY VIEW</span>
+          <span id="sortStatus" class="status">Ready to start</span>
+        </div>
+        <div id="sortBars" class="bars" aria-label="Sorting animation"></div>
+        <div class="legend">
+          <span><i class="dot default-dot"></i>Unsorted</span>
+          <span><i class="dot compare-dot"></i>Comparing</span>
+          <span><i class="dot sorted-dot"></i>Sorted</span>
+        </div>
+      </div>
+
+      <div class="info-grid">
+        <article class="info-card">
+          <p class="eyebrow">CURRENT STEP</p>
+          <h3 id="sortStep">0</h3>
+          <p id="sortExplanation">Load numbers and start the visualization.</p>
+        </article>
+        <article class="info-card">
+          <p class="eyebrow">COMPARISONS</p>
+          <h3 id="sortComparisons">0</h3>
+          <p>Number of element comparisons</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="searching" class="panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">02 / SEARCHING</p>
+          <h2>Searching Visualizer</h2>
+          <p>Find a target value inside an array.</p>
+        </div>
+        <span class="complexity" id="searchComplexity">O(n) time</span>
+      </div>
+
+      <div class="controls">
+        <label>Algorithm
+          <select id="searchAlgorithm">
+            <option value="linear">Linear Search</option>
+            <option value="binary">Binary Search</option>
+          </select>
+        </label>
+        <label>Array
+          <input id="searchInput" value="4, 9, 12, 18, 25, 31, 42">
+        </label>
+        <label>Target
+          <input id="targetInput" type="number" value="25">
+        </label>
+        <button id="searchBtn" class="btn primary">⌕ Search</button>
+      </div>
+
+      <div class="visual-card">
+        <div class="visual-top">
+          <span>ARRAY VIEW</span>
+          <span id="searchStatus" class="status">Ready to search</span>
+        </div>
+        <div id="searchCells" class="cells"></div>
+        <p id="searchExplanation" class="explanation">
+          Choose an algorithm and press Search.
+        </p>
+      </div>
+
+      <div class="info-grid">
+        <article class="info-card">
+          <p class="eyebrow">ELEMENTS CHECKED</p>
+          <h3 id="searchSteps">0</h3>
+          <p>Values inspected during search</p>
+        </article>
+        <article class="info-card">
+          <p class="eyebrow">RESULT</p>
+          <h3 id="searchResult">—</h3>
+          <p id="searchResultText">No search performed yet.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="graphs" class="panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">03 / GRAPH ALGORITHMS</p>
+          <h2>Graph Traversal</h2>
+          <p>Discover how algorithms visit connected nodes.</p>
+        </div>
+        <span class="complexity">BFS / DFS</span>
+      </div>
+
+      <div class="controls">
+        <label>Algorithm
+          <select id="graphAlgorithm">
+            <option value="bfs">Breadth-First Search (BFS)</option>
+            <option value="dfs">Depth-First Search (DFS)</option>
+          </select>
+        </label>
+        <label>Starting node
+          <select id="startNode">
+            <option>A</option><option>B</option><option>C</option>
+            <option>D</option><option>E</option><option>F</option>
+          </select>
+        </label>
+        <button id="graphBtn" class="btn primary">▶ Traverse Graph</button>
+      </div>
+
+      <div class="visual-card">
+        <div class="visual-top">
+          <span>UNDIRECTED GRAPH</span>
+          <span id="graphStatus" class="status">Ready to explore</span>
+        </div>
+        <div class="graph-wrap">
+          <svg id="graphSvg" viewBox="0 0 420 260"
+            role="img" aria-label="Interactive graph traversal diagram">
+            <g id="graphEdges"></g>
+            <g id="graphNodes"></g>
+          </svg>
+        </div>
+        <p id="graphExplanation" class="explanation">
+          Choose a starting node and traverse the graph.
+        </p>
+      </div>
+
+      <div class="info-card traversal-card">
+        <p class="eyebrow">VISIT ORDER</p>
+        <div id="visitOrder" class="visit-order">No nodes visited yet.</div>
+      </div>
+    </section>
+
+    <footer>
+      <p>ADSA LAB · College Project</p>
+      <p>Built with HTML, CSS and JavaScript</p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
